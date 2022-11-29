@@ -1,8 +1,37 @@
 # Объектно-ориентированное программирование
 
+## Методы класса
+
+В классе можно создать метод который привязан к классу, а не к объекту:
+
+```python
+class Car:
+    tax_rate = 0.5
+
+    @classmethod
+    def set_tax_rate(cls, new_tax_rate):
+        # данный метод изменяет общий для всех автомобилей процент налога
+        cls.tax_rate = new_tax_rate
+
+    def __init__(self, model, price):
+        self.model = model
+        self.price = price
+    
+    def get_tax(self):
+        return self.price * self.tax_rate / 100.0
+
+camry = Car('Toyota Camry', 2_000_000)
+largus = Car('Lada Largus', 1_000_000)
+print(camry.get_tax())  # 10000
+print(largus.get_tax())  # 5000
+Car.set_tax_rate(0.2)
+print(camry.get_tax())  # 4000
+print(largus.get_tax())  # 2000
+```
+
 ## Свойства (динамические атрибуты)
 
-В классе можно создать **свойства** — методы, к которым можно обращаться как к атрибутам класса.
+В классе можно создать **свойства** — методы, к которым можно обращаться как к атрибутам класса:
 
 ```python
 class Person:
@@ -19,27 +48,29 @@ p = Person('Smith', 'John')
 print(p.full_name)  # John Smith
 ```
 
-## Методы класса
-
-```python
-class (object):
-    
-
-    @classmethod
-    def class_foo(cls, x):
-        print "executing class_foo(%s, %s)" % (cls, x)
-```
-
 ## Статические методы
 
+В классе можно создать метод, который привязан к классу только формально.
+
 ```python
-class A(object):
-    def foo(self,x):
-        print "executing foo(%s, %s)" % (self, x)
+class Dog:
+    def __init__(self, name, breed):
+        self.name = name
+        self.breed = 
+
+    def hello(self):
+        return f"Привет, я {self.breed} по кличке {self.name}!"
 
     @staticmethod
-    def static_foo(x):
-        print "executing static_foo(%s)" % x
+    def new_bulldog(name):
+        return Dog(name, 'бульдог')
+
+    @staticmethod
+    def new_kolli(name):
+        return Dog(name, 'колли')
+
+lassie = Dog.new_kolli('Лесси')
+print(lassie.hello())  # Привет, я колли по кличке Лесси!
 ```
 
 ## Специальные методы класса
