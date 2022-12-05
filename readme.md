@@ -84,11 +84,11 @@ class Car:
         self.model = model
         self.number = number 
 
-    def hello(self):
+    def __str__(self):
         return f"Автомобиль {self.model} с госномером {self.number}"
 
-car = Car("Toyta Land Cruiser", "A222AA")
-print(car)  # Автомобиль Toyta Land Cruiser с госномером A222AA
+car = Car("Toyota Land Cruiser", "A222AA")
+print(car)  # Автомобиль Toyota Land Cruiser с госномером A222AA
 ```
 
 Арифметические операции:
