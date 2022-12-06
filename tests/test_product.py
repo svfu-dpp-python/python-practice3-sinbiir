@@ -60,8 +60,8 @@ class TestProduct(unittest.TestCase):
         self.assertEqual(Product.get_discount(), new_discount)
 
     def test_negative_discount(self):
-        old_discount = 0.0
         p = Product('Товар', 1.0)
+        old_discount = p.get_discount()
         p.set_discount(-5.0)
         self.assertEqual(p.get_discount(), old_discount)
         self.assertEqual(Product.get_discount(), old_discount)
