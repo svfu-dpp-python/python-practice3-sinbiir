@@ -1,9 +1,10 @@
 class Product:
+    _discount = 0
+
     def __init__(self, name, price):
         self._price = price
         self.name = name
-        self._discount = 0
-
+        
     def get_price(self):
         return self._price
     
@@ -13,15 +14,17 @@ class Product:
         self._price = price
         return
     
-    def get_discount(self):
-        return self._discount
+    @classmethod
+    def get_discount(cls):
+        return cls._discount
 
-    def set_discount(self, discount):
-        if discount<=0:
-            return
-        self._discount = discount
+    @classmethod
+    def set_discount(cls, discount):
+        if discount>0:
+            cls._discount = discount
         return
     
+    @property
     def current_price(self):
         return self._price - self._price/100*self._discount
     
